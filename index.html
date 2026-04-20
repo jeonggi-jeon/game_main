@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="네온 테트리스와 오목 게임으로 바로 이동하는 게임 허브" />
+    <title>게임 허브 — 테트리스 · 오목</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <p class="site-badge">Arcade Portal</p>
+      <h1 class="site-title">
+        <span class="site-title__glow">GAME</span>
+        <span class="site-title__dim">허브</span>
+      </h1>
+      <p class="site-lead">
+        방향키와 타이밍의 테트리스, 두뇌 대결 오목까지 — 한 곳에서 플레이하세요.
+      </p>
+    </header>
+
+    <main class="games" id="games">
+      <article class="game-card game-card--tetris">
+        <div class="game-card__shine" aria-hidden="true"></div>
+        <div class="game-card__icon" aria-hidden="true">
+          <span class="game-card__blocks"></span>
+        </div>
+        <h2 class="game-card__title">네온 테트리스</h2>
+        <p class="game-card__desc">
+          블록을 맞추고 라인을 없애며 레벨을 올려 보세요.
+        </p>
+        <ul class="game-card__hints">
+          <li>← → 이동 · ↑ 회전</li>
+          <li>Space 하드 드롭 · P 일시정지</li>
+        </ul>
+        <a
+          class="game-card__cta"
+          href="https://jeonggi-jeon.github.io/tetris_test/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          테트리스 플레이
+        </a>
+      </article>
+
+      <article class="game-card game-card--omok">
+        <div class="game-card__shine" aria-hidden="true"></div>
+        <div class="game-card__icon game-card__icon--omok" aria-hidden="true"></div>
+        <h2 class="game-card__title">오목</h2>
+        <p class="game-card__desc">
+          사용자 대 컴퓨터 — 정확히 다섯 줄을 먼저 완성하면 승리합니다.
+        </p>
+        <ul class="game-card__hints">
+          <li>격자 교차점에 착수</li>
+          <li>흑 20초 제한</li>
+        </ul>
+        <a
+          class="game-card__cta"
+          href="https://jeonggi-jeon.github.io/omok_test/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          오목 플레이
+        </a>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__note">
+        각 게임은 새 탭에서 열립니다. 즐거운 플레이 되세요.
+      </p>
+    </footer>
+
+    <script src="./js/main.js" defer></script>
+  </body>
+</html>
