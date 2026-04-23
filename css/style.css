@@ -10,6 +10,9 @@
   --amber: #fcd34d;
   --lime: #a3e635;
   --lime-dim: rgba(163, 230, 53, 0.38);
+  --run-sky: #38bdf8;
+  --run-coral: #f472b6;
+  --run-sky-dim: rgba(56, 189, 248, 0.4);
   --text: #e8ecf4;
   --text-muted: #94a3b8;
   --glass: rgba(15, 23, 42, 0.55);
@@ -53,6 +56,7 @@ body {
     radial-gradient(ellipse 90% 60% at 100% 50%, rgba(232, 121, 249, 0.08), transparent 50%),
     radial-gradient(ellipse 70% 50% at 0% 80%, rgba(252, 211, 77, 0.06), transparent 45%),
     radial-gradient(ellipse 55% 40% at 80% 100%, rgba(163, 230, 53, 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 15% 0%, rgba(56, 189, 248, 0.07), transparent 55%),
     linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-mid) 45%, #080812 100%);
   overflow-x: hidden;
 }
@@ -158,9 +162,9 @@ body {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1280px) {
   .games {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -213,6 +217,15 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+.game-card--jump:hover,
+.game-card--jump:focus-within {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.2),
+    0 24px 48px -12px rgba(244, 114, 182, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
 .game-card__shine {
   position: absolute;
   inset: -50%;
@@ -222,7 +235,8 @@ body {
     rgba(34, 211, 238, 0.06) 90deg,
     transparent 180deg,
     rgba(232, 121, 249, 0.06) 270deg,
-    rgba(163, 230, 53, 0.05) 315deg,
+    rgba(163, 230, 53, 0.05) 300deg,
+    rgba(56, 189, 248, 0.05) 330deg,
     transparent 360deg
   );
   animation: shine-spin 14s linear infinite;
@@ -406,6 +420,78 @@ body {
   }
 }
 
+.game-card__icon--jump {
+  background:
+    linear-gradient(180deg, rgba(6, 78, 119, 0.55) 0%, rgba(15, 23, 42, 0.95) 50%, #0f172a 100%);
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
+.game-card__icon--jump::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--run-coral) 50%, var(--run-sky) 95%, transparent);
+  box-shadow: 0 0 16px var(--run-coral), 0 0 24px var(--run-sky);
+}
+
+.game-card__icon--jump::after {
+  content: "";
+  position: absolute;
+  right: 12%;
+  top: 28%;
+  width: 2.25rem;
+  height: 0.35rem;
+  border-radius: 0.2rem;
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  opacity: 0.4;
+  filter: blur(0.5px);
+}
+
+.game-card__jump-runner {
+  position: absolute;
+  left: 38%;
+  bottom: 14%;
+  width: 0.7rem;
+  height: 1.75rem;
+  border-radius: 0.35rem;
+  background: linear-gradient(180deg, var(--run-coral), #be185d);
+  box-shadow: 0 0 18px rgba(244, 114, 182, 0.6);
+  animation: jump-bob 0.95s ease-in-out infinite;
+}
+
+.game-card__jump-runner::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.55rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: -0.275rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fecdd3, #fb7185);
+  box-shadow: 0 0 10px rgba(251, 113, 133, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-card__jump-runner {
+    animation: none;
+    transform: translateY(-0.35rem);
+  }
+}
+
+@keyframes jump-bob {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-1.15rem) scaleY(0.95);
+  }
+}
+
 .game-card__title {
   margin: 0 0 0.5rem;
   font-size: 1.45rem;
@@ -427,6 +513,12 @@ body {
   color: #bef264;
   letter-spacing: 0.06em;
   text-shadow: 0 0 24px var(--lime-dim);
+}
+
+.game-card--jump .game-card__title {
+  color: #7dd3fc;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px var(--run-sky-dim), 0 0 28px rgba(244, 114, 182, 0.25);
 }
 
 .game-card__desc {
@@ -469,6 +561,10 @@ body {
   color: var(--lime);
 }
 
+.game-card--jump .game-card__hints li::before {
+  color: var(--run-coral);
+}
+
 .game-card__cta {
   display: inline-flex;
   align-items: center;
@@ -499,6 +595,12 @@ body {
 .game-card--galaxyan .game-card__cta {
   background: linear-gradient(135deg, var(--lime), #65a30d);
   box-shadow: 0 0 28px var(--lime-dim);
+  color: #0f172a;
+}
+
+.game-card--jump .game-card__cta {
+  background: linear-gradient(135deg, var(--run-sky), #7c3aed 55%, var(--run-coral));
+  box-shadow: 0 0 28px var(--run-sky-dim);
   color: #0f172a;
 }
 
